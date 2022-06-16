@@ -5,16 +5,15 @@ const {users}=require('../models/user.model');
 const bearerAuth = require('../middleware/bearer');
 
 
-getUsersRouters.get('/users',bearerAuth,async(req,res,next)=>{
-    try {
-        const userRecords = await users.findAll({});
-        const UserName = userRecords.map(user => user.username);
-        res.status(200).json(UserName);
-      } catch (e) {
-        console.error(e);
-        next(e);
-      }
-})
 
 
-module.exports=getUsersRouters;
+module.exports=async(req,res,next)=>{
+  try {
+      const userRecords = await users.findAll({});
+      const UserNameOnly = userRecords.map(user => user.username);
+      res.status(200).json(UserNameOnly);
+    } catch (e) {
+      console.error(e);
+      next(e);
+    }
+}
