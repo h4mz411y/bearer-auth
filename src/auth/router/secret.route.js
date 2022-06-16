@@ -6,7 +6,7 @@ const bearerAuth=require('../middleware/bearer');
 
 secretRouters.get('/secret',bearerAuth,(req,res)=>{
     res.status(200).json({
-        'message': 'You are authorized to view the user orders',
+        'message': 'authorized ',
         'user': req.user
     });})
 
