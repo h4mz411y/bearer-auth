@@ -10,9 +10,19 @@ signupRouters.get('/',(req,res)=>{
 })
 signupRouters.post('/signup',async(req,res)=>{
     try {
-        req.body.password = await bcrypt.hash(req.body.password, 10);
-        const record = await users.create(req.body);
+        let username = req.body.username;
+        let password = await bcrypt.hash(req.body.password, 10);
+        // console.log('username', username);
+        // console.log('password', password);
+        let role = req.body.role;
+        const record = await users.create({
+            username: username,
+            password: password,
+            role: role,
+        });
         res.status(201).json(record);
+        // res.json(record);
+
       } catch (e) { res.status(403).send('Please try again'); }
 
 })

@@ -1,5 +1,5 @@
 'use strict';
-const {users} = require("../models/user.model");
+const {userModel} = require("../models/user.model");
 const base64 = require('base-64');
 
 
@@ -9,7 +9,7 @@ async function basicAuth(req,res,next){
     let encodedString = basicHeaderParts.pop();  
     let decodedString = base64.decode(encodedString);         
     let [username, password] = decodedString.split(':'); 
-    users.authenticateBasic(username, password)
+    userModel.authenticateBasic(username, password)
     .then((validUser) => {
         req.user = validUser;
         

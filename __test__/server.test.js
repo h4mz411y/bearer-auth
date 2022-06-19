@@ -1,11 +1,11 @@
 'use strict';
 const base64 = require('base-64');
-const middleware = require('../src/auth/middleware/basic');
-const users=require("../src/auth/models/user.model");
+const middleware = require('../src/middleware/basic');
+const users=require("../src/models/user.model");
 process.env.SECRET = "TEST_SECRET";
 const { app } = require('../src/server'); 
 const supertest = require('supertest');
-const { sequelize } = require('../src/auth/models/index.model');
+const { sequelize } = require('../src/models/index.model');
 
 const mockRequest = supertest(app);
 
